@@ -22,16 +22,16 @@ export default function PassportDemo() {
         <div className={styles.card} style={{ gridColumn: '1 / -1', background: 'var(--card-bg)' }}>
           <h2 style={{ color: 'var(--ochre)' }}>The Continuity Handshake</h2>
           <p>
-            When a community organisation like CEBT needs to prove an outcome (e.g., an entrepreneur completing a programme), 
+            When a community organisation like CEBT needs to prove an outcome (e.g., an entrepreneur completing a programme),
             the append-only history is extracted from the <strong>iPhande PostgreSQL Database</strong> and wrapped in a cryptographically signed <strong>Evidence Passport</strong>.
           </p>
           <p style={{ marginTop: '1rem' }}>
-            This passport is then sent to the <strong>AXIS Evidence Registry</strong> for constitutional validation. 
+            This passport is then sent to the <strong>AXIS Evidence Registry</strong> for constitutional validation.
             iPhande never shares its internal community database with AXIS. They remain architecturally independent.
           </p>
 
           <div style={{ display: 'flex', gap: '1rem', marginTop: '2rem' }}>
-            <button 
+            <button
               onClick={() => setStep(2)}
               disabled={step > 1}
               style={{
@@ -46,7 +46,7 @@ export default function PassportDemo() {
             >
               1. Compile Community Evidence
             </button>
-            <button 
+            <button
               onClick={() => setStep(3)}
               disabled={step !== 2}
               style={{
@@ -61,7 +61,7 @@ export default function PassportDemo() {
             >
               2. Generate Cryptographic Passport
             </button>
-            <button 
+            <button
               onClick={() => setStep(4)}
               disabled={step !== 3}
               style={{
@@ -88,7 +88,7 @@ export default function PassportDemo() {
               <div className="animate-fade-in">
                 <h3 style={{ color: '#fff', marginBottom: '1rem' }}>Extracting Append-Only Log</h3>
                 <pre style={{ color: '#0f0', fontSize: '0.8rem', overflowX: 'auto' }}>
-{`> Querying iPhande Local Ledger...
+                  {`> Querying iPhande Local Ledger...
 > Extracting [Sipho's Auto Repair] milestones...
 > Found 4 sequential continuity records...
 > Preparing bundle...`}
@@ -99,7 +99,7 @@ export default function PassportDemo() {
               <div className="animate-fade-in">
                 <h3 style={{ color: '#fff', marginBottom: '1rem' }}>Evidence Passport Generated</h3>
                 <pre style={{ color: '#0aa', fontSize: '0.8rem', overflowX: 'auto' }}>
-{`{
+                  {`{
   "passport_id": "AXP-IPHANDE-2026-9A7B",
   "issuer": "iPhande Community Continuity Node",
   "domain": "Entrepreneurship (CEBT)",
@@ -118,7 +118,14 @@ export default function PassportDemo() {
                   <p style={{ color: '#ccc', marginTop: '0.5rem', fontSize: '0.9rem' }}>The institutional layer has verified the community evidence without needing direct database access. The compliance workflow is now complete.</p>
                 </div>
                 <div style={{ marginTop: '2rem' }}>
-                  <a href={process.env.NEXT_PUBLIC_AXIS_API ? \`\${process.env.NEXT_PUBLIC_AXIS_API}/docs\` : "#"} target="_blank" rel="noreferrer" style={{ color: 'var(--ochre)', textDecoration: 'underline' }}>View AXIS Registry</a>
+                  <a
+                    href={process.env.NEXT_PUBLIC_AXIS_API ? `${process.env.NEXT_PUBLIC_AXIS_API}/docs` : "#"}
+                    target="_blank"
+                    rel="noreferrer"
+                    style={{ color: 'var(--ochre)', textDecoration: 'underline' }}
+                  >
+                    View AXIS Registry
+                  </a>
                 </div>
               </div>
             )}

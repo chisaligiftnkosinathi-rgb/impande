@@ -1,16 +1,17 @@
+import { JournalService } from '@/lib/services/JournalService';
 import { NextRequest, NextResponse } from 'next/server';
-import { JournalService } from '../../../../../lib/services/JournalService';
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
+  const { id } = await params;
   const requestId = `req_${Date.now()}`;
   const timestamp = new Date().toISOString();
 
   try {
     // 1. Validation (Thin Adapter)
-    if (!params.id) {
+    if (!id) {
       return NextResponse.json({
         error: { code: "BAD_REQUEST", message: "Journal Entry ID is required.", details: [] },
         meta: { requestId, timestamp, apiVersion: "v1" }
@@ -18,7 +19,7 @@ export async function GET(
     }
 
     // 2. Invoke the Service
-    const explanation = await JournalService.explain({ id: params.id });
+    const explanation = await JournalService.explain({ id });
 
     // 3. Return the standard Response Envelope
     return NextResponse.json({
@@ -29,8 +30,8 @@ export async function GET(
         apiVersion: "v1"
       },
       links: {
-        self: `/api/v1/journal-entries/${params.id}/explain`,
-        journalEntry: `/api/v1/journal-entries/${params.id}`
+        self: `/api/v1/journal-entries/${id}/explain`,
+        journalEntry: `/api/v1/journal-entries/${id}`
       }
     });
 

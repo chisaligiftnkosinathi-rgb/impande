@@ -1,4 +1,4 @@
-import { PrismaClient } from '@prisma/client'
+import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient()
 
@@ -13,6 +13,8 @@ async function main() {
       isPlatformAdmin: true,
     }
   });
+
+  const domains = [
 
     {
       name: "Carolina Family Heritage",
@@ -96,7 +98,7 @@ async function main() {
 
   for (const d of domains) {
     console.log(`Seeding domain: ${d.domain} - ${d.name}`);
-    
+
     const collection = await prisma.collection.create({
       data: {
         name: d.name,
