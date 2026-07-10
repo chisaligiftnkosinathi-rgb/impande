@@ -1,0 +1,110 @@
+{
+  "timestamp": "2026-07-06T12:31:38.086Z",
+  "engineVersion": "1.0.0",
+  "project": "impande",
+  "projectVersion": "0.1.0",
+  "overall": "WOUNDED",
+  "elements": [
+    {
+      "symbol": "🌍",
+      "element": "Earth",
+      "engine": "Repository",
+      "quote": "\"The soil remembers every seed.\"",
+      "responsibility": "Protect the foundation before planting something new.",
+      "level": "WOUNDED",
+      "message": "Branch: master. 29 uncommitted changes detected.",
+      "poem": "The root still lives, but it requires tending.",
+      "remedy": "Consider committing your work before planting something new."
+    },
+    {
+      "symbol": "💧",
+      "element": "Water",
+      "engine": "Preservation",
+      "quote": "\"Water finds every crack, and carries memory through it.\"",
+      "responsibility": "Memory survives because preservation remains faithful.",
+      "level": "FLOURISHING",
+      "message": "Archive integrity verified. 6.7 KB preserved."
+    },
+    {
+      "symbol": "🔥",
+      "element": "Fire",
+      "engine": "Truth Engine",
+      "quote": "\"Fire reveals what shadow conceals.\"",
+      "responsibility": "Truth cannot stand if its structure is compromised.",
+      "level": "WOUNDED",
+      "message": "Schema is valid, but migration status could not be confirmed.",
+      "poem": "The fire burns, but its edges are unclear.",
+      "remedy": "Ensure the database is accessible and run `npx prisma migrate status`."
+    },
+    {
+      "symbol": "🌬",
+      "element": "Wind",
+      "engine": "Constitution",
+      "quote": "\"The wind carries the voice of the ancestors.\"",
+      "responsibility": "The words of the covenant must remain whole.",
+      "level": "FLOURISHING",
+      "message": "All sacred documents are present. The covenant is whole."
+    },
+    {
+      "symbol": "🌳",
+      "element": "Tree",
+      "engine": "Continuity",
+      "quote": "\"A tree without roots cannot shelter those who come after.\"",
+      "responsibility": "Every branch depends on what lies beneath.",
+      "level": "FLOURISHING",
+      "message": "All roots are in place. The tree stands."
+    },
+    {
+      "symbol": "☀️",
+      "element": "Light",
+      "engine": "Heritage",
+      "quote": "\"Light makes visible what was always there.\"",
+      "responsibility": "Carry the stories forward, without alteration.",
+      "level": "FLOURISHING",
+      "message": "Heritage records found. The stories are carried forward."
+    },
+    {
+      "symbol": "🤝",
+      "element": "Community",
+      "engine": "Stewardship",
+      "quote": "\"No one remembers alone.\"",
+      "responsibility": "The covenant is only as strong as those who keep it.",
+      "level": "WOUNDED",
+      "message": "5 constitutional tests failing. 1 passing.",
+      "poem": "The covenant is strained.",
+      "remedy": "Review the failing principles. The community depends on their integrity."
+    },
+    {
+      "symbol": "⭐",
+      "element": "Legacy",
+      "engine": "Version Freeze",
+      "quote": "\"Legacy is not what we leave behind. It is what we refuse to destroy.\"",
+      "responsibility": "Freeze what is sacred before the next season begins.",
+      "level": "FLOURISHING",
+      "message": "Release v1.0 is frozen and carries its Standard. Legacy is preserved."
+    },
+    {
+      "symbol": "🕊",
+      "element": "Steward",
+      "engine": "Readiness",
+      "quote": "\"The work of a Steward is to listen without judgment, to record without altering, and to preserve without deleting.\"",
+      "responsibility": "Enter this space as a caretaker of the past, working in service to the future.",
+      "interactive": true,
+      "level": "WOUNDED",
+      "message": "Steward reflection deferred. No interactive terminal detected.",
+      "poem": "The reflection awaits a human presence.",
+      "remedy": "Run `npm run calibrate` in your terminal to observe the reflection."
+    },
+    {
+      "symbol": "❤️",
+      "element": "Heart",
+      "engine": "Today's Remembrance",
+      "quote": "\"Remember why this work was begun. Return to it often.\"",
+      "responsibility": "Begin each session by being reminded why Impande exists.",
+      "variant": "remembrance",
+      "level": "FLOURISHING",
+      "message": "To remember faithfully.\nTo seek truth humbly.\nTo preserve both for those who come after.\n\nThis is the path of continuity. This is the root.",
+      "poem": "— The Impande Manifesto"
+    }
+  ]
+}

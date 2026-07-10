@@ -1,0 +1,247 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+  engineType = "library"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ----------------------------------------
+// IDENTITY & AUTHORIZATION ENGINE (Roles)
+// ----------------------------------------
+
+model User {
+  id              String   @id @default(cuid()) // The permanent ImpandeID
+  displayName     String
+  email           String?  @unique
+  isPlatformAdmin Boolean  @default(false)
+  createdAt       DateTime @default(now())
+
+  memberships     CollectionMembership[]
+  submissions     Submission[]
+  reviews         Review[]
+  revisions       JournalEntryRevision[]
+  assignedTasks   ResearchTask[]
+}
+
+model CollectionMembership {
+  id              String   @id @default(uuid())
+  userId          String
+  collectionId    String
+  role            String   // OWNER, STEWARD, CONTRIBUTOR, READER
+  status          String   @default("ACTIVE") // INVITED, ACTIVE, SUSPENDED, REMOVED
+  joinedAt        DateTime @default(now())
+
+  user            User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  collection      Collection @relation(fields: [collectionId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, collectionId])
+}
+
+model CollectionInvitation {
+  id              String   @id @default(uuid())
+  collectionId    String
+  email           String
+  invitedById     String
+  role            String   // Proposed Role: STEWARD, CONTRIBUTOR, etc.
+  status          String   @default("PENDING") // PENDING, ACCEPTED, EXPIRED
+  expiresAt       DateTime
+  acceptedAt      DateTime?
+  createdAt       DateTime @default(now())
+
+  collection      Collection @relation(fields: [collectionId], references: [id], onDelete: Cascade)
+}
+
+// ----------------------------------------
+// 1. CONTINUITY ENGINE (Domain & Collections)
+// ----------------------------------------
+
+model Collection {
+  id          String   @id @default(uuid())
+  name        String   // e.g., "The Chisali Family Heritage"
+  description String?
+  domain      String   @default("FAMILY") // FAMILY, RETAIL, AGRICULTURE, CONSTRUCTION, MANUFACTURING, LABORATORY, EDUCATION, COMMUNITY
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  entities    Entity[]
+  entries     JournalEntry[]
+  memberships CollectionMembership[]
+  invitations CollectionInvitation[]
+  researchTasks ResearchTask[]
+}
+
+model Entity {
+  id              String   @id @default(uuid()) // This is the ImpandeID
+  collectionId    String
+  type            String   // 'Person', 'Village', 'Church', 'Family', etc.
+  name            String
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  collection      Collection @relation(fields: [collectionId], references: [id], onDelete: Cascade)
+  
+  linkedEntries   EntityEntryLink[]
+}
+
+// ----------------------------------------
+// 2. TRUTH ENGINE (Journals & Provenance)
+// ----------------------------------------
+
+model JournalEntry {
+  id                String   @id @default(uuid())
+  collectionId      String
+  currentRevisionId String?  @unique // Points to the active, accepted revision
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  collection        Collection @relation(fields: [collectionId], references: [id], onDelete: Cascade)
+  revisions         JournalEntryRevision[]
+  linkedEntities    EntityEntryLink[]
+
+  // Provenance Graph edges
+  sourceRelations   ClaimRelationship[] @relation("SourceClaim")
+  targetRelations   ClaimRelationship[] @relation("TargetClaim")
+  
+  submissions       Submission[]
+  researchTasks     ResearchTask[]
+}
+
+model JournalEntryRevision {
+  id                String   @id @default(uuid())
+  journalEntryId    String
+  revisionNumber    Int
+  stewardId         String
+  createdAt         DateTime @default(now()) // Immutable timestamp
+
+  // The actual claim payload
+  claim             String
+  conflictStatus    String   @default("none") // none, disputed, contradicted, uncertain, resolved
+  confidenceSeed    Float    @default(0.0)
+  evidenceStrength  String   @default("unverified") // strong, moderate, weak, unverified
+  
+  location          String?
+  approximateDate   String?
+  exactDate         DateTime?
+  tags              String?  // JSON stringified array or comma separated
+  notes             String?
+
+  journalEntry      JournalEntry @relation(fields: [journalEntryId], references: [id], onDelete: Cascade)
+  steward           User         @relation(fields: [stewardId], references: [id])
+  
+  sourceReferences  SourceReference[]
+}
+
+// Represents the linkage between a person/place and an entry
+model EntityEntryLink {
+  id                String   @id @default(uuid())
+  entityId          String
+  journalEntryId    String
+  relation          String?  // e.g., "paternal grandfather"
+
+  entity            Entity       @relation(fields: [entityId], references: [id], onDelete: Cascade)
+  journalEntry      JournalEntry @relation(fields: [journalEntryId], references: [id], onDelete: Cascade)
+}
+
+// The Provenance Graph
+model ClaimRelationship {
+  id               String   @id @default(uuid())
+  sourceClaimId    String
+  targetClaimId    String
+  relationshipType String   // 'supports', 'contradicts', 'references', 'supersedes', 'derived_from', 'duplicates'
+
+  sourceClaim      JournalEntry @relation("SourceClaim", fields: [sourceClaimId], references: [id], onDelete: Cascade)
+  targetClaim      JournalEntry @relation("TargetClaim", fields: [targetClaimId], references: [id], onDelete: Cascade)
+}
+
+// ----------------------------------------
+// 3. EVIDENCE & MEDIA
+// ----------------------------------------
+
+model SourceReference {
+  id                  String   @id @default(uuid())
+  revisionId          String
+  type                String   // oral_history, document, inference, etc.
+  description         String
+  origin              String?
+  evidenceLineageId   String?  // For deduplicating corroboration
+  dateCaptured        DateTime?
+
+  revision            JournalEntryRevision @relation(fields: [revisionId], references: [id], onDelete: Cascade)
+  mediaAttachments    MediaAttachment[]
+}
+
+model MediaAttachment {
+  id                  String   @id @default(uuid())
+  sourceReferenceId   String
+  fileName            String
+  fileUrl             String   // Points to object storage index
+  mimeType            String
+  fileHash            String?  // For integrity checking
+  createdAt           DateTime @default(now())
+
+  sourceReference     SourceReference @relation(fields: [sourceReferenceId], references: [id], onDelete: Cascade)
+}
+
+// ----------------------------------------
+// 4. REVIEW WORKFLOW
+// ----------------------------------------
+
+model Submission {
+  id                String   @id @default(uuid())
+  contributorId     String
+  journalEntryId    String?  // Null if proposing a new entry, populated if proposing an edit
+  proposedClaim     String
+  status            String   @default("PENDING") // PENDING, ACCEPTED, REJECTED
+  createdAt         DateTime @default(now())
+
+  contributor       User          @relation(fields: [contributorId], references: [id])
+  journalEntry      JournalEntry? @relation(fields: [journalEntryId], references: [id], onDelete: Cascade)
+  review            Review?
+}
+
+model Review {
+  id                String   @id @default(uuid())
+  submissionId      String   @unique
+  stewardId         String
+  decision          String   // ACCEPTED, REJECTED
+  notes             String?
+  reviewedAt        DateTime @default(now())
+
+  submission        Submission @relation(fields: [submissionId], references: [id], onDelete: Cascade)
+  steward           User       @relation(fields: [stewardId], references: [id])
+}
+
+// -----------------------------------------------------------------
+// 5. STEWARDSHIP LAYER (Phase 8)
+// -----------------------------------------------------------------
+
+model ResearchTask {
+  id               String   @id @default(uuid())
+  collectionId     String
+  collection       Collection @relation(fields: [collectionId], references: [id])
+  
+  linkedClaimId    String?
+  linkedClaim      JournalEntry? @relation(fields: [linkedClaimId], references: [id])
+
+  origin           String   // 'SYSTEM' or 'STEWARD'
+  priority         String   // 'HIGH', 'MEDIUM', 'LOW'
+  status           String   @default("OPEN") // 'OPEN', 'IN_PROGRESS', 'RESOLVED'
+  
+  createdFromMetric String? // E.g., 'missingPrimarySources'
+  description      String
+  suggestedArchive String?
+
+  assignedStewardId String?
+  assignedSteward   User?     @relation(fields: [assignedStewardId], references: [id])
+
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  @@index([collectionId, status])
+}

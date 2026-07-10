@@ -1,0 +1,237 @@
+.page {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 2rem 1rem 3rem;
+}
+
+.hero {
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 3rem 2rem;
+    margin-bottom: 2rem;
+    background: linear-gradient(145deg, rgba(212, 175, 55, 0.08) 0%, rgba(196, 98, 16, 0.08) 45%, rgba(60, 110, 113, 0.08) 100%);
+}
+
+.kicker {
+    margin: 0 0 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 0.78rem;
+    color: var(--muted);
+}
+
+.hero h1 {
+    margin: 0;
+    font-size: clamp(2rem, 5vw, 3.3rem);
+    line-height: 1.15;
+    color: var(--foreground);
+}
+
+.lead {
+    margin-top: 1rem;
+    font-size: 1.08rem;
+    color: var(--foreground);
+    max-width: 760px;
+}
+
+.buttonRow {
+    display: flex;
+    gap: 0.9rem;
+    flex-wrap: wrap;
+    margin-top: 1.4rem;
+}
+
+.primaryButton,
+.secondaryButton {
+    display: inline-block;
+    border-radius: 999px;
+    padding: 0.72rem 1.1rem;
+    border: 1px solid transparent;
+    font-size: 0.95rem;
+}
+
+.primaryButton {
+    background: var(--gold);
+    color: #1b1405;
+    font-weight: 600;
+}
+
+.secondaryButton {
+    border-color: var(--border);
+    color: var(--foreground);
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.section {
+    margin-top: 2rem;
+}
+
+.section h2 {
+    margin: 0 0 0.7rem;
+    color: var(--foreground);
+}
+
+.section p {
+    color: var(--muted);
+    margin: 0;
+}
+
+.grid {
+    margin-top: 1rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 1rem;
+}
+
+.card {
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.02);
+    padding: 1rem;
+}
+
+.card h3 {
+    margin: 0 0 0.45rem;
+    color: var(--foreground);
+}
+
+.card p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.95rem;
+}
+
+.list {
+    margin: 0.8rem 0 0;
+    padding-left: 1.2rem;
+    color: var(--foreground);
+}
+
+.list li+li {
+    margin-top: 0.45rem;
+}
+
+.split {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: 1.3fr 1fr;
+}
+
+.notice {
+    margin-top: 1.2rem;
+    border-left: 3px solid var(--gold);
+    padding-left: 0.8rem;
+    color: var(--muted);
+    font-size: 0.95rem;
+}
+
+.metaGrid {
+    margin-top: 1rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    gap: 0.75rem;
+}
+
+.metaItem {
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 0.65rem 0.8rem;
+    background: rgba(255, 255, 255, 0.015);
+}
+
+.metaLabel {
+    display: block;
+    color: var(--muted);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+
+.metaValue {
+    display: block;
+    margin-top: 0.2rem;
+    color: var(--foreground);
+    font-size: 0.95rem;
+    line-height: 1.35;
+}
+
+.statusBadge {
+    display: inline-block;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    font-size: 0.8rem;
+    padding: 0.18rem 0.55rem;
+    color: var(--foreground);
+}
+
+.timeline {
+    margin-top: 1rem;
+    border-left: 2px solid var(--border);
+    padding-left: 0.9rem;
+    display: grid;
+    gap: 0.9rem;
+}
+
+.timelineItem {
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.015);
+    padding: 0.7rem 0.8rem;
+}
+
+.timelineYear {
+    color: var(--gold);
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+.timelineText {
+    margin-top: 0.25rem;
+    color: var(--foreground);
+    font-size: 0.95rem;
+}
+
+.linkList {
+    margin: 0.75rem 0 0;
+    padding-left: 1.2rem;
+    color: var(--foreground);
+}
+
+.linkList li+li {
+    margin-top: 0.35rem;
+}
+
+.chain {
+    margin-top: 1rem;
+    border: 1px dashed var(--border);
+    border-radius: 10px;
+    padding: 0.8rem;
+    color: var(--foreground);
+    font-size: 0.92rem;
+}
+
+.chain strong {
+    color: var(--gold);
+}
+
+.abstract {
+    margin-top: 0.9rem;
+}
+
+.pairGrid {
+    margin-top: 1rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1rem;
+}
+
+@media (max-width: 800px) {
+    .hero {
+        padding: 2rem 1.2rem;
+    }
+
+    .split {
+        grid-template-columns: 1fr;
+    }
+}

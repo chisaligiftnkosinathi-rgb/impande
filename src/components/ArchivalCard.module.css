@@ -1,0 +1,19 @@
+.card {
+  background-color: var(--card-bg);
+  border-radius: 8px;
+  padding: 1.5rem;
+  /* Warm copper/bronze shadows */
+  box-shadow: 0 4px 12px rgba(184, 115, 51, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border);
+  
+  /* Slight handmade paper texture overlay */
+  background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  
+  /* Gentle animation for rising */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(184, 115, 51, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}

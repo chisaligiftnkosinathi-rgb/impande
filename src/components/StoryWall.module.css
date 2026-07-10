@@ -1,0 +1,64 @@
+.storyWall {
+  width: 100%;
+  max-width: 800px;
+  margin: 2rem 0;
+}
+
+.title {
+  color: var(--gold);
+  margin-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 1rem;
+}
+
+.timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  position: relative;
+}
+
+/* Connecting line for the timeline */
+.timeline::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 2rem;
+  width: 2px;
+  background-color: var(--border);
+  z-index: 0;
+}
+
+.eventCard {
+  position: relative;
+  z-index: 1;
+  margin-left: 4rem;
+}
+
+/* The node on the timeline */
+.eventCard::before {
+  content: "";
+  position: absolute;
+  top: 2rem;
+  left: -2.25rem;
+  width: 10px;
+  height: 10px;
+  background-color: var(--ochre);
+  border-radius: 50%;
+  border: 2px solid var(--background);
+}
+
+.timeLabel {
+  color: var(--ochre);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin: 0 0 0.5rem 0;
+}
+
+.description {
+  color: var(--foreground);
+  margin: 0;
+  font-size: 1.1rem;
+}

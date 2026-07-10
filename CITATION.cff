@@ -1,0 +1,14 @@
+cff-version: 1.2.0
+message: "If you use this software or theoretical framework, please cite it as below."
+authors:
+  - family-names: Chisali
+    given-names: Gift Nkosinathi
+title: "iPhande: Community Continuity & Ecosystem Demonstrator"
+version: 1.0.0-pilot
+date-released: 2026-07-08
+keywords:
+  - ChemIS
+  - Computational Continuity Framework
+  - Evidence Governance
+  - Digital Identity
+  - Trust Infrastructure

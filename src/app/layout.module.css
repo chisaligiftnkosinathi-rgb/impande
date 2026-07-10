@@ -1,0 +1,45 @@
+.header {
+    padding: 1rem;
+    border-bottom: 1px solid #eaeaea;
+}
+
+.headerInner {
+    max-width: 1120px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.brand {
+    font-weight: bold;
+    color: inherit;
+    text-decoration: none;
+}
+
+.nav {
+    display: flex;
+    gap: 0.9rem;
+    font-size: 0.9rem;
+    flex-wrap: wrap;
+}
+
+.navLink {
+    color: #666;
+    text-decoration: none;
+}
+
+.footer {
+    border-top: 1px solid var(--border);
+    margin-top: 4rem;
+    padding: 1.5rem 1rem;
+}
+
+.footerInner {
+    max-width: 1120px;
+    margin: 0 auto;
+    color: var(--muted);
+    font-size: 0.9rem;
+}

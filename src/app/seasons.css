@@ -1,0 +1,26 @@
+/* Add these to the end of globals.css */
+
+/* Seasons of the Land */
+.season-spring {
+  --soil: #2a2f26;         /* Slightly greener charcoal */
+  --border: #4a5d23;       /* Acacia Green border */
+  --card-bg: rgba(46, 71, 45, 0.05); /* Baobab tint */
+}
+
+.season-summer {
+  --soil: #332315;         /* Warmer, deeper brown */
+  --border: #c46210;       /* Ochre border */
+  --card-bg: rgba(253, 224, 71, 0.03); /* Sun tint */
+}
+
+.season-autumn {
+  --soil: #3a1e12;         /* Deep copper shadow */
+  --border: #b87333;       /* Copper border */
+  --card-bg: rgba(184, 115, 51, 0.04); /* Copper tint */
+}
+
+.season-winter {
+  --soil: #222222;         /* Stone / Charcoal */
+  --border: #555555;       /* Stone border */
+  --card-bg: rgba(200, 200, 200, 0.02); /* Cool stone tint */
+}
