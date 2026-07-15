@@ -4,7 +4,7 @@ import { useLayout } from "./LayoutContext"
 import { cn } from "@/lib/utils"
 
 export function MainContent({ children }: { children: React.ReactNode }) {
-  const { sidebarCollapsed } = useLayout()
+  // Layout context can be accessed here if needed in the future
 
   return (
     <main
