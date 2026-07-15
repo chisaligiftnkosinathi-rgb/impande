@@ -24,7 +24,8 @@ export default function Footer() {
           <h3 className="font-bold text-[var(--ax-primary)] mb-4">Trust</h3>
           <ul className="space-y-2 text-sm text-[var(--ax-muted)]">
             <li><Link href="/trust/standards" className="hover:text-[var(--ax-secondary)]">Standards</Link></li>
-            <li><Link href="/trust/provenance" className="hover:text-[var(--ax-secondary)]">Provenance</Link></li>
+            <li><Link href="/trust/provenance" className="hover:text-[var(--ax-secondary)]">Research Traceability</Link></li>
+            <li><Link href="/trust/verification" className="hover:text-[var(--ax-secondary)]">How We Verify</Link></li>
             <li><Link href="/trust/certification" className="hover:text-[var(--ax-secondary)]">Certification</Link></li>
           </ul>
         </div>
