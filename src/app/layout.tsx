@@ -1,7 +1,6 @@
 import './globals.css';
 import { Inter } from 'next/font/google';
-import SiteHeader from '../components/SiteHeader';
-import Footer from '../components/Footer';
+import { AppShell } from '@/components/layout/AppShell';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 
@@ -17,15 +16,15 @@ export const metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${inter.variable}`}>
-      <body className="antialiased min-h-screen flex flex-col bg-[var(--ax-background)] text-[var(--ax-text)]">
+      <body className="antialiased min-h-screen bg-[var(--ax-background)] text-[var(--ax-text)] overflow-hidden">
         <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:top-0 focus:left-0 focus:z-50 focus:p-4 focus:bg-[var(--ax-primary)] focus:text-white">
           Skip to main content
         </a>
-        <SiteHeader />
-        <main id="main-content" className="flex-grow w-full max-w-[var(--ax-container)] mx-auto">
-          {children}
-        </main>
-        <Footer />
+        <AppShell>
+          <div id="main-content">
+            {children}
+          </div>
+        </AppShell>
       </body>
     </html>
   );
