@@ -34,7 +34,7 @@ export function CommandBar() {
     setCommandPaletteOpen(false)
     setQuery("")
     setResults([])
-    router.push(\`/objects/\${id}\`)
+    router.push(`/objects/${id}`)
   }
 
   return (
