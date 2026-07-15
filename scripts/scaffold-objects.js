@@ -1,4 +1,10 @@
-import React from 'react';
+const fs = require('fs');
+const path = require('path');
+
+const objectsDir = path.join(__dirname, '../src/app/objects/[id]');
+if (!fs.existsSync(objectsDir)) fs.mkdirSync(objectsDir, { recursive: true });
+
+const pageTsx = `import React from 'react';
 import { notFound } from 'next/navigation';
 import { getObjectGraph } from '@/lib/registry/api';
 import { getStatusColor, formatDate } from '@/lib/presentation/helpers';
@@ -57,7 +63,7 @@ export default async function ObjectPage({ params }: { params: { id: string } })
             <>
               <div className="flex gap-4">
                 {node.incomingEdges.map(e => (
-                  <Link key={e.from} href={`/objects/${e.from}`} className="px-3 py-1 bg-[var(--ax-background)] border border-[var(--ax-border)] rounded hover:border-[var(--ax-primary)] transition-colors">
+                  <Link key={e.from} href={\`/objects/\${e.from}\`} className="px-3 py-1 bg-[var(--ax-background)] border border-[var(--ax-border)] rounded hover:border-[var(--ax-primary)] transition-colors">
                     {e.from}
                   </Link>
                 ))}
@@ -79,7 +85,7 @@ export default async function ObjectPage({ params }: { params: { id: string } })
               </div>
               <div className="flex gap-4">
                 {node.outgoingEdges.map(e => (
-                  <Link key={e.to} href={`/objects/${e.to}`} className="px-3 py-1 bg-[var(--ax-background)] border border-[var(--ax-border)] rounded hover:border-[var(--ax-primary)] transition-colors">
+                  <Link key={e.to} href={\`/objects/\${e.to}\`} className="px-3 py-1 bg-[var(--ax-background)] border border-[var(--ax-border)] rounded hover:border-[var(--ax-primary)] transition-colors">
                     {e.to}
                   </Link>
                 ))}
@@ -100,10 +106,10 @@ export default async function ObjectPage({ params }: { params: { id: string } })
              const relatedId = edge.from === node.id ? edge.to : edge.from;
              const direction = edge.from === node.id ? 'Outgoing' : 'Incoming';
              return (
-               <Card key={`${edge.from}-${edge.to}`} className="bg-[var(--ax-surface)] border-[var(--ax-border)]">
+               <Card key={\`\${edge.from}-\${edge.to}\`} className="bg-[var(--ax-surface)] border-[var(--ax-border)]">
                  <CardContent className="p-4 flex flex-col justify-center">
                    <div className="flex items-center justify-between">
-                     <Link href={`/objects/${relatedId}`} className="text-sm font-bold text-[var(--ax-text)] hover:text-[var(--ax-primary)] underline-offset-2 hover:underline">{relatedId}</Link>
+                     <Link href={\`/objects/\${relatedId}\`} className="text-sm font-bold text-[var(--ax-text)] hover:text-[var(--ax-primary)] underline-offset-2 hover:underline">{relatedId}</Link>
                      <Badge variant="outline" className="text-[10px] uppercase">{direction}: {edge.relation}</Badge>
                    </div>
                  </CardContent>
@@ -118,3 +124,19 @@ export default async function ObjectPage({ params }: { params: { id: string } })
     </div>
   );
 }
+`;
+
+fs.writeFileSync(path.join(objectsDir, 'page.tsx'), pageTsx);
+
+const actionsTs = `"use server"
+
+import { searchRegistry as internalSearch } from '@/lib/registry/api';
+
+export async function searchRegistryAction(query: string) {
+  return await internalSearch(query);
+}
+`;
+
+fs.writeFileSync(path.join(__dirname, '../src/app/actions.ts'), actionsTs);
+
+console.log('Object route and server action generated.');
