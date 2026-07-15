@@ -20,14 +20,40 @@ export async function getRecentResearch(limit: number = 5): Promise<KnowledgeObj
     .slice(0, limit);
 }
 
-export async function searchRegistry(query: string): Promise<KnowledgeObject[]> {
+export interface SearchOptions {
+  query?: string;
+  type?: string;
+}
+
+export async function searchRegistry(options: SearchOptions | string): Promise<KnowledgeObject[]> {
   const objects = await registryRepo.getAllObjects();
-  const q = query.toLowerCase();
-  return objects.filter(o => 
-    o.id.toLowerCase().includes(q) || 
-    o.title.toLowerCase().includes(q) || 
-    o.summary.toLowerCase().includes(q)
-  );
+  
+  if (typeof options === "string") {
+    const q = options.toLowerCase();
+    return objects.filter(o => 
+      o.id.toLowerCase().includes(q) || 
+      o.title.toLowerCase().includes(q) || 
+      o.summary.toLowerCase().includes(q)
+    );
+  }
+
+  let results = objects;
+  
+  if (options.type) {
+    const t = options.type.toLowerCase();
+    results = results.filter(o => o.type.toLowerCase() === t);
+  }
+  
+  if (options.query) {
+    const q = options.query.toLowerCase();
+    results = results.filter(o => 
+      o.id.toLowerCase().includes(q) || 
+      o.title.toLowerCase().includes(q) || 
+      o.summary.toLowerCase().includes(q)
+    );
+  }
+
+  return results;
 }
 
 export async function getObjectGraph(id: string) {
