@@ -26,34 +26,10 @@ export interface SearchOptions {
 }
 
 export async function searchRegistry(options: SearchOptions | string): Promise<KnowledgeObject[]> {
-  const objects = await registryRepo.getAllObjects();
-  
   if (typeof options === "string") {
-    const q = options.toLowerCase();
-    return objects.filter(o => 
-      o.id.toLowerCase().includes(q) || 
-      o.title.toLowerCase().includes(q) || 
-      o.summary.toLowerCase().includes(q)
-    );
+    return registryRepo.search({ query: options });
   }
-
-  let results = objects;
-  
-  if (options.type) {
-    const t = options.type.toLowerCase();
-    results = results.filter(o => o.type.toLowerCase() === t);
-  }
-  
-  if (options.query) {
-    const q = options.query.toLowerCase();
-    results = results.filter(o => 
-      o.id.toLowerCase().includes(q) || 
-      o.title.toLowerCase().includes(q) || 
-      o.summary.toLowerCase().includes(q)
-    );
-  }
-
-  return results;
+  return registryRepo.search(options);
 }
 
 export async function getObjectGraph(id: string) {

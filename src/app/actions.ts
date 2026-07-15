@@ -1,7 +1,9 @@
 "use server"
 
-import { searchRegistry as internalSearch } from '@/lib/registry/api';
+import { registryRepo } from '@/lib/registry/repository';
+import { searchIntelligence } from '@/lib/intelligence/search';
 
 export async function searchRegistryAction(query: string) {
-  return await internalSearch(query);
+  const objects = await registryRepo.getAllObjects();
+  return searchIntelligence(objects, query);
 }

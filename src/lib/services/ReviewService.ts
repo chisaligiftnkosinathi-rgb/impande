@@ -70,7 +70,7 @@ export class ReviewService {
       ? JSON.stringify({ ...JSON.parse(submission.proposedClaim), ...command.adjustedClaimPayload })
       : submission.proposedClaim;
 
-    const parsedClaim = JSON.parse(finalPayloadStr) as SubmitJournalEntryCommand;
+    const finalParsedClaim = JSON.parse(finalPayloadStr) as SubmitJournalEntryCommand;
 
     const result = await prisma.$transaction(async (tx) => {
       // 3a. Update Review Workflow
@@ -92,7 +92,7 @@ export class ReviewService {
       let journalEntryId = submission.journalEntryId;
       if (!journalEntryId) {
         const newEntry = await tx.journalEntry.create({
-          data: { collectionId: parsedClaim.collectionId }
+          data: { collectionId: finalParsedClaim.collectionId }
         });
         journalEntryId = newEntry.id;
       }
@@ -111,13 +111,13 @@ export class ReviewService {
           journalEntryId,
           revisionNumber: nextRevNum,
           stewardId: command.stewardId,
-          claim: parsedClaim.claim,
-          evidenceStrength: parsedClaim.evidenceStrength || "unverified",
-          location: parsedClaim.location,
-          approximateDate: parsedClaim.approximateDate,
-          exactDate: parsedClaim.exactDate ? new Date(parsedClaim.exactDate) : null,
-          tags: parsedClaim.tags ? JSON.stringify(parsedClaim.tags) : null,
-          notes: parsedClaim.notes
+          claim: finalParsedClaim.claim,
+          evidenceStrength: finalParsedClaim.evidenceStrength || "unverified",
+          location: finalParsedClaim.location,
+          approximateDate: finalParsedClaim.approximateDate,
+          exactDate: finalParsedClaim.exactDate ? new Date(finalParsedClaim.exactDate) : null,
+          tags: finalParsedClaim.tags ? JSON.stringify(finalParsedClaim.tags) : null,
+          notes: finalParsedClaim.notes
         }
       });
 

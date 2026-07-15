@@ -21,6 +21,11 @@ export interface BaseKnowledgeObject {
   tags: string[];
   createdAt: string;
   updatedAt: string;
+  createdBy: string;
+  updatedBy: string;
+  revision: number;
+  lifecycleStatus: string;
+  version?: string;
 }
 
 export interface Programme extends BaseKnowledgeObject {

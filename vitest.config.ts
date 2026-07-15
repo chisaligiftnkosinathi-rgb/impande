@@ -1,17 +1,18 @@
 import { defineConfig } from 'vitest/config';
+import path from 'path';
 
-/**
- * Vitest configuration for Impande.
- *
- * This file exists to prevent vitest from walking up the directory tree
- * and finding a stray vite.config.js in a parent directory. By placing
- * this config at the project root, vitest is anchored here.
- */
 export default defineConfig({
   test: {
-    root:        '.',
+    include: ['tests/integration/**/*.test.ts'],
     environment: 'node',
-    include:     ['tests/**/*.test.ts'],
-    exclude:     ['node_modules', '.next'],
+    globals: true,
+    setupFiles: ['./tests/setup.ts'],
+    alias: {
+      '@': path.resolve(__dirname, './src'),
+    },
+    coverage: {
+      provider: 'v8',
+      reporter: ['text', 'json', 'html'],
+    },
   },
 });
