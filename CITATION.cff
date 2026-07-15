@@ -1,14 +1,12 @@
 cff-version: 1.2.0
-message: "If you use this software or theoretical framework, please cite it as below."
+title: "impande"
+message: "If you use this software or data, please cite it as below."
+type: software
 authors:
   - family-names: Chisali
-    given-names: Gift Nkosinathi
-title: "iPhande: Community Continuity & Ecosystem Demonstrator"
-version: 1.0.0-pilot
-date-released: 2026-07-08
-keywords:
-  - ChemIS
-  - Computational Continuity Framework
-  - Evidence Governance
-  - Digital Identity
-  - Trust Infrastructure
+    given-names: Gift
+institution: AXIONYX Research Institute
+publisher: Global IT and Business Solutions (Pty) Ltd
+version: 1.0.0
+date-released: 2026-07-15
+url: "https://axionyx.co.za"

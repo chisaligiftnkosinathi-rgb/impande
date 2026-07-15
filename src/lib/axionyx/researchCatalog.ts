@@ -38,6 +38,15 @@ export interface SoftwareProject {
     license: string;
 }
 
+export interface TechnologyProduct {
+    id: string;
+    name: string;
+    classification: "Platform" | "Toolkit" | "Engine";
+    summary: string;
+    positioning: string;
+    href: string;
+}
+
 export const programmes: Programme[] = [
     {
         slug: "enrm",
@@ -208,6 +217,49 @@ export const softwareProjects: SoftwareProject[] = [
         releaseNotesHref: "https://github.com/axionyx/registry-lab/releases",
         researchProgramme: "future-programmes",
         license: "MIT",
+    },
+];
+
+export const technologyProducts: TechnologyProduct[] = [
+    {
+        id: "product-impande",
+        name: "Impande",
+        classification: "Platform",
+        summary:
+            "Continuity, institutional memory, and evidence management platform developed as a software output of the AXIONYX research ecosystem.",
+        positioning:
+            "Impande is a product of the institute, not the institute itself. It represents how AXIONYX research becomes usable digital infrastructure.",
+        href: "/spaces",
+    },
+    {
+        id: "product-axis-platform",
+        name: "AXIONYX Platform",
+        classification: "Platform",
+        summary:
+            "Core research infrastructure for programme execution, publication traceability, and evidence-aware institutional workflows.",
+        positioning:
+            "This platform layer supports institute operations and future productization across programmes.",
+        href: "/software#sw-axis-core",
+    },
+    {
+        id: "product-chemist-toolkit",
+        name: "ChemIST Toolkit",
+        classification: "Toolkit",
+        summary:
+            "Validation and evidence-governance tooling derived from the ChemIST research programme.",
+        positioning:
+            "A practical software expression of institute methodology for high-integrity digital systems.",
+        href: "/software#sw-axis-core",
+    },
+    {
+        id: "product-intelligence-engine",
+        name: "Intelligence Engine",
+        classification: "Engine",
+        summary:
+            "Emerging reasoning and analytical engine for evidence interpretation, linkage, and future decision-support workflows.",
+        positioning:
+            "This remains an emerging product direction and is treated as a research output under active definition.",
+        href: "/software#sw-registry-lab",
     },
 ];
 

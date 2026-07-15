@@ -1,128 +1,64 @@
-import Link from "next/link";
-import styles from "./institute.module.css";
-
-const programmes = [
-  {
-    name: "ENRM",
-    description:
-      "Evidence-Native Research Methodology for reproducible, accountable scientific workflows.",
-    href: "/research/enrm",
-  },
-  {
-    name: "ChemIST",
-    description:
-      "Chemistry x Information Systems for evidence lineage, governance, and computational continuity.",
-    href: "/research/chemist",
-  },
-  {
-    name: "EcoIST",
-    description:
-      "Environmental and ecological systems intelligence supported by transparent data and repeatable methods.",
-    href: "/research/ecoist",
-  },
-  {
-    name: "Future Programmes",
-    description:
-      "Emerging workstreams in applied AI, digital trust, and institution-scale open science infrastructure.",
-    href: "/research/future-programmes",
-  },
-];
+import React from 'react';
+import Link from 'next/link';
 
 export default function Home() {
   return (
-    <main className={styles.page}>
-      <section className={styles.hero}>
-        <p className={styles.kicker}>AXIONYX Research Institute</p>
-        <h1>Advancing Scientific Discovery Through Reproducible Computational Research</h1>
-        <p className={styles.lead}>
-          AXIONYX develops methods, software, and open knowledge systems that strengthen how
-          research is produced, verified, and shared across institutions and communities.
+    <main className="p-8 max-w-[var(--ax-container)] mx-auto">
+      <header className="mb-16">
+        <h1 className="text-4xl md:text-5xl font-bold text-[var(--ax-primary)] mb-6">AXIONYX Research Observatory</h1>
+        <p className="text-xl md:text-2xl text-[var(--ax-muted)] max-w-3xl leading-relaxed">
+          AXIONYX helps people and organisations trust information by connecting research, software, evidence, and real-world solutions in a transparent way.
         </p>
-        <div className={styles.buttonRow}>
-          <Link className={styles.primaryButton} href="/research">
-            Explore Research
-          </Link>
-          <Link className={styles.secondaryButton} href="/publications">
-            Publications
-          </Link>
-        </div>
-      </section>
+      </header>
 
-      <section className={styles.section}>
-        <h2>Mission</h2>
-        <p>
-          The institute exists to build trustworthy research systems where evidence, methods,
-          and results remain inspectable, reproducible, and useful over time. We align
-          computational rigor with social purpose to accelerate science that serves people.
-        </p>
-      </section>
-
-      <section className={styles.section}>
-        <h2>Research Programmes</h2>
-        <div className={styles.grid}>
-          {programmes.map((programme) => (
-            <article key={programme.name} className={styles.card}>
-              <h3>{programme.name}</h3>
-              <p>{programme.description}</p>
-              <div className={styles.buttonRow}>
-                <Link className={styles.secondaryButton} href={programme.href}>
-                  View Programme
-                </Link>
-              </div>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section className={`${styles.section} ${styles.split}`}>
-        <article className={styles.card}>
-          <h3>Latest Publications</h3>
-          <ul className={styles.list}>
-            <li>Computational continuity and evidence lineage patterns (working paper).</li>
-            <li>Research governance architecture for open science institutions.</li>
-            <li>Field calibration reports and emerging methodology notes.</li>
-          </ul>
-          <div className={styles.buttonRow}>
-            <Link className={styles.secondaryButton} href="/publications">
-              Browse Publications
-            </Link>
+      <section className="mb-16">
+        <h2 className="text-3xl font-bold text-[var(--ax-primary)] mb-8 border-b border-[var(--ax-border)] pb-4">Research Infrastructure</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          
+          <div className="bg-[var(--ax-surface)] p-6 rounded-[var(--ax-radius)] border border-[var(--ax-border)]">
+            <h3 className="text-2xl font-bold text-[var(--ax-secondary)] mb-2">15+ Knowledge Repositories</h3>
+            <p className="text-[var(--ax-text)]">Organised collections of standards, publications, software, data, and evidence.</p>
           </div>
-        </article>
 
-        <article className={styles.card}>
-          <h3>Open Source Software</h3>
-          <p>
-            AXIONYX software translates research frameworks into practical tools for
-            governance, traceability, and institutional evidence stewardship.
-          </p>
-          <div className={styles.buttonRow}>
-            <Link className={styles.secondaryButton} href="/software">
-              Explore Software
-            </Link>
+          <div className="bg-[var(--ax-surface)] p-6 rounded-[var(--ax-radius)] border border-[var(--ax-border)]">
+            <h3 className="text-2xl font-bold text-[var(--ax-secondary)] mb-2">5 Research Layers</h3>
+            <p className="text-[var(--ax-text)]">A structured pathway from research foundations to real-world applications.</p>
           </div>
-        </article>
-      </section>
 
-      <section className={styles.section}>
-        <h2>Collaborations</h2>
-        <p>
-          We welcome partnerships with universities, public institutions, laboratories,
-          industry, and civil society actors who are committed to high-trust, open, and
-          reproducible science.
-        </p>
-        <div className={styles.buttonRow}>
-          <Link className={styles.secondaryButton} href="/partners">
-            Partnership Pathways
-          </Link>
-          <Link className={styles.secondaryButton} href="/contact">
-            Contact Institute
-          </Link>
+          <div className="bg-[var(--ax-surface)] p-6 rounded-[var(--ax-radius)] border border-[var(--ax-border)]">
+            <h3 className="text-2xl font-bold text-[var(--ax-secondary)] mb-2">Validated Software Systems</h3>
+            <p className="text-[var(--ax-text)]">Computational tools designed around documented methods and evidence.</p>
+          </div>
+
+          <div className="bg-[var(--ax-surface)] p-6 rounded-[var(--ax-radius)] border border-[var(--ax-border)]">
+            <h3 className="text-2xl font-bold text-[var(--ax-secondary)] mb-2">Evidence Packages</h3>
+            <p className="text-[var(--ax-text)]">Records that explain how results were produced and verified.</p>
+          </div>
+
+          <div className="bg-[var(--ax-surface)] p-6 rounded-[var(--ax-radius)] border border-[var(--ax-border)]">
+            <h3 className="text-2xl font-bold text-[var(--ax-secondary)] mb-2">Certified Solutions</h3>
+            <p className="text-[var(--ax-text)]">Products evaluated through the AXIONYX validation framework.</p>
+          </div>
+
         </div>
       </section>
 
-      <p className={styles.notice}>
-        Domain note: axionyx.co.za is the institute&apos;s public research platform domain.
-      </p>
+      <section className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="border border-[var(--ax-border)] p-8 rounded-[var(--ax-radius)]">
+          <h2 className="text-2xl font-bold text-[var(--ax-primary)] mb-4">Discover</h2>
+          <p className="text-[var(--ax-muted)] mb-6">Explore our scientific output and methodologies.</p>
+          <Link href="/discover/what-is-axionyx" className="inline-block bg-[var(--ax-secondary)] text-white px-6 py-3 rounded-[var(--ax-radius)] font-bold hover:bg-opacity-90 transition-opacity focus:outline-none focus:ring-2 focus:ring-[var(--ax-primary)]">
+            Learn more &rarr;
+          </Link>
+        </div>
+        <div className="border border-[var(--ax-border)] p-8 rounded-[var(--ax-radius)]">
+          <h2 className="text-2xl font-bold text-[var(--ax-primary)] mb-4">Trust</h2>
+          <p className="text-[var(--ax-muted)] mb-6">Verify the provenance of our research objects.</p>
+          <Link href="/trust/provenance" className="inline-block bg-white text-[var(--ax-primary)] border border-[var(--ax-primary)] px-6 py-3 rounded-[var(--ax-radius)] font-bold hover:bg-[var(--ax-surface)] transition-colors focus:outline-none focus:ring-2 focus:ring-[var(--ax-secondary)]">
+            Verify data &rarr;
+          </Link>
+        </div>
+      </section>
     </main>
   );
 }

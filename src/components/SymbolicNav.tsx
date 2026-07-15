@@ -6,15 +6,32 @@ import styles from "./SymbolicNav.module.css";
 
 export default function SymbolicNav() {
   const pathname = usePathname();
-  
-  // Don't show navigation on the home page (which is the entrance/landing page)
-  if (pathname === "/") return null;
+
+  const productRoutes = [
+    "/spaces",
+    "/roots",
+    "/journeys",
+    "/truth",
+    "/memories",
+    "/stewardship",
+    "/service",
+    "/discovery",
+    "/passport-demo",
+    "/constitution",
+    "/ecosystem",
+  ];
+
+  const isProductRoute = productRoutes.some(
+    (route) => pathname === route || pathname.startsWith(`${route}/`),
+  );
+
+  if (!isProductRoute) return null;
 
   return (
     <nav className={styles.nav}>
       <div className={styles.logo}>
-        <Link href="/">
-          <span className="voice-elder">Impande</span>
+        <Link href="/impande">
+          <span className="voice-elder">Impande Platform</span>
         </Link>
       </div>
       <ul className={`${styles.menu} voice-steward`}>

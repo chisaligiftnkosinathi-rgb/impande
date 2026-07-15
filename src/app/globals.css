@@ -1,55 +1,15 @@
-:root {
-  /* Typography Variables */
-  --font-family-steward: var(--font-inter), system-ui, sans-serif;
-  --font-family-elder: var(--font-lora), serif;
-  --font-family-archive: var(--font-fira-code), monospace;
-  
-  /* Impande Design Language: The Eight Elements Semantic Palette */
-  --soil: #2C1B18;         /* Deep Umber / Charcoal */
-  --clay: #8C4A32;         /* Terracotta */
-  --ochre: #C46210;        /* Sunset Orange */
-  --copper: #B87333;       /* Warm shadow/accent */
-  --bronze: #CD7F32;       /* Secondary accent */
-  --gold: #D4AF37;         /* Highlighting */
-  --baobab: #2E472D;       /* Baobab Green */
-  --acacia: #4A5D23;       /* Acacia Green */
-  --river: #3C6E71;        /* River Blue */
-  --sun: #FDE047;          /* Dawn yellow */
-  
-  --earth-light: #F4E8D6;  /* Sand / Paper */
-  --earth-muted: #A39171;  /* Soft text */
-  --earth-border: #D1C0A8; /* Border line */
+@import '../styles/tokens.css';
 
-  --background: var(--soil);
-  --foreground: var(--earth-light);
-  --muted: #8C7A6B;
-  --border: #4A3B32;
-  --card-bg: rgba(244, 232, 214, 0.03);
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    --background: var(--earth-light);
-    --foreground: var(--soil);
-    --muted: var(--earth-muted);
-    --border: var(--earth-border);
-    --card-bg: #FFFFFF;
-  }
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 html, body {
-  max-width: 100vw;
-  overflow-x: hidden;
-  background-color: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-family-steward);
+  background-color: var(--ax-background);
+  color: var(--ax-text);
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  line-height: 1.6;
-  
-  /* Subtle woven texture overlay */
-  background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 20.5V18H0v-2h20v-2H0v-2h20v-2H0V8h20V6H0V4h20V2H0V0h22v20h2V0h2v20h2V0h2v20h2V0h2v20h2V0h2v20h2v2H20v-1.5zM0 20h2v20H0V20zm4 0h2v20H4V20zm4 0h2v20H8V20zm4 0h2v20h-2V20zm4 0h2v20h-2V20zm4 4h20v2H20v-2zm0 4h20v2H20v-2zm0 4h20v2H20v-2zm0 4h20v2H20v-2z' fill='%23000000' fill-opacity='0.02' fill-rule='evenodd'/%3E");
 }
 
 *, *::before, *::after {
@@ -57,66 +17,5 @@ html, body {
 }
 
 a {
-  color: var(--ochre);
-  text-decoration: none;
   transition: color 0.3s ease;
-}
-
-a:hover {
-  color: var(--gold);
-}
-
-h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-family-elder);
-  font-weight: 400;
-  margin-top: 0;
-  letter-spacing: 0.05em;
-  color: var(--gold);
-}
-
-/* Typography Voices */
-.voice-elder {
-  font-family: var(--font-family-elder);
-  font-weight: 400;
-  letter-spacing: 0.05em;
-}
-
-.voice-steward {
-  font-family: var(--font-family-steward);
-  line-height: 1.6;
-}
-
-.voice-archive {
-  font-family: var(--font-family-archive);
-  font-size: 0.85em;
-  letter-spacing: 0;
-  color: var(--muted);
-}
-
-/* Texture Utilities */
-.archival-texture {
-  background-color: var(--card-bg);
-  box-shadow: 0 4px 12px rgba(184, 115, 51, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.1);
-  background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-  border: 1px solid var(--border);
-  border-radius: 12px;
-}
-
-/* Gentle motion utility classes */
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-@keyframes gentleRise {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.animate-fade-in {
-  animation: fadeIn 2s ease-in-out forwards;
-}
-
-.animate-rise {
-  animation: gentleRise 1.5s ease-out forwards;
 }

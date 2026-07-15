@@ -1,0 +1,11 @@
+/* TEAM */
+Institution: AXIONYX Research Institute
+Operator: Global IT and Business Solutions (Pty) Ltd
+Location: South Africa
+Contact: Global_IT_Business@proton.me
+
+/* SITE */
+Purpose: Public Research Observatory
+Language: English
+Framework: Next.js
+Typography: Inter

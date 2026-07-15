@@ -1,28 +1,31 @@
-import type { MetadataRoute } from "next";
-
-const baseUrl = "https://axionyx.co.za";
+import { MetadataRoute } from 'next';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-    const routes = [
-        "",
-        "/about",
-        "/research",
-        "/research/enrm",
-        "/research/chemist",
-        "/research/ecoist",
-        "/research/future-programmes",
-        "/publications",
-        "/software",
-        "/open-science",
-        "/partners",
-        "/news",
-        "/contact",
-    ];
+  const baseUrl = 'https://iphande.co.za';
 
-    return routes.map((route) => ({
-        url: `${baseUrl}${route}`,
-        lastModified: new Date(),
-        changeFrequency: route.startsWith("/research") ? "weekly" : "monthly",
-        priority: route === "" ? 1 : 0.7,
-    }));
+  const routes = [
+    '',
+    '/discover/what-is-axionyx',
+    '/discover/programmes',
+    '/discover/publications',
+    '/discover/software',
+    '/discover/data-evidence',
+    '/trust/standards',
+    '/trust/certification',
+    '/trust/provenance',
+    '/trust/verification',
+    '/solutions/certified-products',
+    '/solutions/licensed-technology',
+    '/solutions/partnerships',
+    '/participate/open-science',
+    '/participate/communities',
+    '/participate/contact',
+  ];
+
+  return routes.map((route) => ({
+    url: `${baseUrl}${route}`,
+    lastModified: new Date(),
+    changeFrequency: 'weekly',
+    priority: route === '' ? 1 : 0.8,
+  }));
 }

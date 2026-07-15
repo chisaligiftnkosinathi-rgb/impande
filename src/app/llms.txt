@@ -1,0 +1,13 @@
+# AXIONYX Research Observatory
+
+AXIONYX is a research and technology institution focused on transparent computational science.
+
+Primary principles:
+- Evidence before conclusions
+- Reproducibility before claims
+- Provenance before publication
+
+Official domain:
+https://iphande.co.za
+
+Research objects are identified using AXIONYX metadata standards.

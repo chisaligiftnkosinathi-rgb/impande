@@ -1,0 +1,11 @@
+﻿:root {
+  --ax-primary: #0b1f3a;
+  --ax-secondary: #2563eb;
+  --ax-background: #ffffff;
+  --ax-surface: #f8fafc;
+  --ax-text: #111827;
+  --ax-muted: #64748b;
+  --ax-border: #e5e7eb;
+  --ax-radius: 14px;
+  --ax-container: 1280px;
+}
